@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42ª Fiera Autunnale Villa Cortese</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ff6b35, #f7931e, #ffd23f, #8bc34a);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b35, #8bc34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .autumn-decoration {
+            display: inline-block;
+            font-size: 2rem;
+            margin: 0 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mendel-highlight {
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+            border-left: 5px solid #2E7D32;
+        }
+
+        .mendel-highlight h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .mendel-event {
+            border-left: 4px solid #4CAF50;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(255, 255, 255, 0.95));
+        }
+
+        .event-date {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .mendel-event .event-date {
+            color: #2E7D32;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .event-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .event-time {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .collaboratori {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .collaboratore {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .collaboratore:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .autumn-decoration {
+                font-size: 1.5rem;
+                margin: 0 10px;
+            }
+        }
+
+        .floating-leaves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-leaves" id="leaves"></div>
+    
+    <div class="container">
+        <header class="header">
+            <span class="autumn-decoration">🍂</span>
+            <h1>Fiera Autunnale</h1>
+            <div class="subtitle">Villa Cortese - 42ª Edizione</div>
+            <span class="autumn-decoration">🍁</span>
+            <div style="margin-top: 20px; font-size: 1.1rem; color: #666;">
+                In collaborazione con Associazioni e Commercianti
+            </div>
+        </header>
+
+        <div class="mendel-highlight">
+            <h2>🎓 Eventi IIS Mendel - Villa Cortese 🎓</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 20px;">
+                Il nostro Istituto partecipa attivamente alla Fiera Autunnale con eventi speciali!
+            </p>
+        </div>
+
+        <div class="events-grid">
+            <div class="event-card mendel-event">
+                <div class="event-date">📍 Sabato 6 Settembre</div>
+                <div class="event-title">Mercato Contadino - Istituto Mendel</div>
+                <div class="event-description">
+                    Dalle 8:00 alle 13:00 - Mercato contadino organizzato in collaborazione con l'Istituto Mendel
+                </div>
+                <div class="event-time">🕐 Orario: 8:00 - 13:00</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🏃‍♀️ Domenica 7 Settembre</div>
+                <div class="event-title">3° Olympia Villa</div>
+                <div class="event-description">
+                    Giornata dello sport - Domenica 14 settembre in caso di maltempo
+                </div>
+                <div class="event-time">⏰ Giornata intera</div>
+            </div>
+
+            <div class="event-card mendel-event">
+                <div class="event-date">📍 Dal 10 al 30 Settembre</div>
+                <div class="event-title">Mostra Mercato - Istituto Mendel</div>
+                <div class="event-description">
+                    Esposizione e vendita di prodotti agricoli e artigianali dell'Istituto Mendel (Via Ferrazzi 15)
+                </div>
+                <div class="event-time">🏫 Presso l'Istituto Mendel</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🍷 Venerdì 12 Settembre</div>
+                <div class="event-title">Qui si balla!</div>
+                <div class="event-description">
+                    Serata anni '80-'90 con djset alla Balera San Nazaro
+                </div>
+                <div class="event-time">🕘 Dalle 18:00</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🎭 Sabato 13 Settembre</div>
+                <div class="event-title">Serata Danzante</div>
+                <div class="event-description">
+                    Serata danzante e cena con orchestra presso Proloco Villa Cortese
+                </div>
+                <div class="event-time">🍽️ Ore 21:00</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🎪 Venerdì 19 Settembre</div>
+                <div class="event-title">Spettacolo "Ratioppa"</div>
+                <div class="event-description">
+                    Spettacolo con voce, musiche e pupazzi animati per adulti e ragazzi
+                </div>
+                <div class="event-time">🎫 Ore 21:00</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">📸 Sabato 20 Settembre</div>
+                <div class="event-title">Mostra Fotografica</div>
+                <div class="event-description">
+                    "On the road tutto strada!" - Esposizione fotografica del Gruppo Fotografico di Villa Cortese
+                </div>
+                <div class="event-time">🏛️ Sala Consiliare</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🌟 Domenica 21 Settembre</div>
+                <div class="event-title">Villa Slam</div>
+                <div class="event-description">
+                    Torneo di 12 ore di basket a partire dalle 9:00
+                </div>
+                <div class="event-time">🏀 Dalle 9:00</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🏆 Giovedì 25 Settembre</div>
+                <div class="event-title">Premiazione 20° Premio Poesia</div>
+                <div class="event-description">
+                    Organizzato da Proloco Villa Cortese in collaborazione con Amministrazione Comunale
+                </div>
+                <div class="event-time">📝 Ore 14:30</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🎵 Venerdì 26 Settembre</div>
+                <div class="event-title">Spettacolo Comico</div>
+                <div class="event-description">
+                    "Se vuoi ridere tutti l'anno" del duo "Ridi Ridaci"
+                </div>
+                <div class="event-time">😄 Ore 21:00</div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">🛒 Sabato 27 Settembre</div>
+                <div class="event-title">Mostra Mercato</div>
+                <div class="event-description">
+                    Prodotti di florovivaistica, prodotti orto e meleto didattico km0
+                </div>
+                <div class="event-time">🌱 Dalle 8:30 alle 12:00</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2 style="color: #ff6b35; margin-bottom: 20px; text-align: center;">📍 Informazioni Pratiche</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h3>🏥 Stand Informativo</h3>
+                    <p>Stand AISM - Associazione Italiana Sclerosi Multipla (Piazza Carroccio)</p>
+                </div>
+                <div>
+                    <h3>🎮 Attività per Bambini</h3>
+                    <p>Si gioca! Ping pong e spazio basket organizzato dal Gruppo Sport del Comune</p>
+                </div>
+                <div>
+                    <h3>🍯 Prodotti Locali</h3>
+                    <p>Angolo dolcezze (Via Tosi) e Swap party "Le amiche dell'armadio"</p>
+                </div>
+                <div>
+                    <h3>🎪 Eventi Speciali</h3>
+                    <p>"Un TAVOLO per te!" Stand Tavolo Eventi e "So Fare" - Mercato artigianale</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2 style="color: #333; margin-bottom: 20px;">📥 Scarica la Locandina Ufficiale</h2>
+            <p style="margin-bottom: 30px; color: #666; font-size: 1.1rem;">
+                Scarica la locandina ufficiale della 42ª Fiera Autunnale di Villa Cortese con tutti gli eventi in programma
+            </p>
+            <button class="download-btn" onclick="downloadPoster()">
+                📄 Scarica Locandina PDF
+            </button>
+        </div>
+
+        <div class="collaboratori">
+            <a href="https://www.comune.villacortese.mi.it/" target="_blank" class="collaboratore" style="text-decoration: none; color: inherit; transition: all 0.3s ease;">
+                🏛️ Comune di Villa Cortese
+            </a>
+            <a href="https://agrariomendel.edu.it/" target="_blank" class="collaboratore" style="text-decoration: none; color: inherit; transition: all 0.3s ease;">
+                🎓 IIS Mendel
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <h3>🎓 Creato dall'IIS Mendel di Villa Cortese (MI)</h3>
+        <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+            © 2025 - Pagina realizzata dagli studenti dell'IIS Mendel
+        </div>
+    </footer>
+
+    <script>
+        // Animazione foglie che cadono
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.innerHTML = Math.random() > 0.5 ? '🍂' : '🍁';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            leaf.style.animationDelay = Math.random() * 5 + 's';
+            
+            document.getElementById('leaves').appendChild(leaf);
+            
+            setTimeout(() => {
+                leaf.remove();
+            }, 15000);
+        }
+
+        // Crea foglie periodicamente
+        setInterval(createLeaf, 2000);
+        
+        // Funzione per scaricare la locandina
+        function downloadPoster() {
+            const link = document.createElement('a');
+            link.href = 'https://agrariomendel.edu.it/allegati/all/5001-fiera-villa-cortese-2025.pdf';
+            link.download = 'Fiera-Autunnale-Villa-Cortese-2025.pdf';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Effetto parallasse leggero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            document.body.style.backgroundPosition = `center ${rate}px`;
+        });
+
+        // Animazione al scroll per le card degli eventi
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.event-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
